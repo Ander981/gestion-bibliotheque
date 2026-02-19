@@ -6,6 +6,38 @@
   },
   "routes": [
     {
+      "src": "/assets/(.*)",
+      "dest": "/assets/$1"
+    },
+    {
+      "src": "/",
+      "dest": "/api/index.php"
+    },
+    {
+      "src": "/index.php",
+      "dest": "/api/index.php"
+    },
+    {
+      "src": "/livres/?(.*)",
+      "dest": "/api/index.php"
+    },
+    {
+      "src": "/membres/?(.*)",
+      "dest": "/api/index.php"
+    },
+    {
+      "src": "/emprunts/?(.*)",
+      "dest": "/api/index.php"
+    },
+    {
+      "src": "/auth/?(.*)",
+      "dest": "/api/index.php"
+    },
+    {
+      "src": "/admin/?(.*)",
+      "dest": "/api/index.php"
+    },
+    {
       "src": "/(.*)",
       "dest": "/api/index.php"
     }
