@@ -27,13 +27,14 @@
         <h1>📚 Gestion de bibliothèque</h1>
         <nav>
             <ul>
-                <li><a href="/bibliotheque/index.php">Accueil</a></li>
-                <li><a href="/bibliotheque/livres/index.php">Livres</a></li>
-                <li><a href="/bibliotheque/membres/index.php">Membres</a></li>
-                <li><a href="/bibliotheque/emprunts/index.php">Emprunts</a></li>
-                <?php if (isset($_SESSION['role']) && $_SESSION['role'] === 'super_admin'): ?>
-                <li><a href="/bibliotheque/admin/ajouter_admin.php">Ajouter un admin</a></li>
+                <li><a href="/">Accueil</a></li>
+                <li><a href="/livres/index.php">Livres</a></li>
+                <li><a href="/membres/index.php">Membres</a></li>
+                <li><a href="/emprunts/index.php">Emprunts</a></li>
+                <?php if (isset($_SESSION['user_id']) && $_SESSION['role'] === 'super_admin'): ?>
+                <li><a href="/admin/ajouter_admin.php">Ajouter un admin</a></li>
                 <?php endif; ?>
+                <!-- reste du menu -->
             </ul>
         </nav>
     </header>
