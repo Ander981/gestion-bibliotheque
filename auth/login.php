@@ -1,58 +1,41 @@
 <?php
 // auth/login.php
+session_start();
 
-// Déterminer le chemin racine
-$root_path = realpath(__DIR__ . '/..');
-
-// Inclure la configuration avec le bon chemin
-require_once $root_path . '/config/database.php';
-
-// Vérifier si déjà connecté
-if (isset($_SESSION['user_id']) || isset($_SESSION['membre_id'])) {
-    header('Location: /index.php');
+// Si l'utilisateur est déjà connecté, on le redirige vers l'accueil
+if (isset($_SESSION['user_id'])) {
+    header('Location: /index.php'); 
     exit;
 }
+
+require_once '../config/database.php';
 
 $error = '';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Version sans opérateur ?? (compatible PHP 5.x)
-    $identifiant = isset($_POST['identifiant']) ? trim($_POST['identifiant']) : '';
+
+    $username = isset($_POST['username']) ? trim($_POST['username']) : '';
     $password = isset($_POST['password']) ? $_POST['password'] : '';
 
-    if (!empty($identifiant) && !empty($password)) {
-        // Vérifier dans utilisateurs (admin)
+}
+
+
+    if (!empty($username) && !empty($password)) {
         $stmt = $pdo->prepare("SELECT * FROM utilisateurs WHERE username = ?");
-        $stmt->execute([$identifiant]);
+        $stmt->execute([$username]);
         $user = $stmt->fetch();
 
         if ($user && password_verify($password, $user['password'])) {
             $_SESSION['user_id'] = $user['id'];
             $_SESSION['username'] = $user['username'];
             $_SESSION['role'] = $user['role'];
-            header('Location: /index.php');
+            header('Location: /bibliotheque/index.php');
             exit;
         } else {
-            // Vérifier dans membres
-            $stmt = $pdo->prepare("SELECT id, nom, prenom, email, password FROM membres WHERE email = ?");
-            $stmt->execute([$identifiant]);
-            $membre = $stmt->fetch();
-
-            if ($membre && password_verify($password, $membre['password'])) {
-                $_SESSION['membre_id'] = $membre['id'];
-                $_SESSION['membre_nom'] = $membre['nom'];
-                $_SESSION['membre_prenom'] = $membre['prenom'];
-                $_SESSION['membre_email'] = $membre['email'];
-                header('Location: /index.php');
-                exit;
-            } else {
-                $error = "Identifiant ou mot de passe incorrect.";
-            }
+            $error = "Nom d'utilisateur ou mot de passe incorrect.";
         }
-    } else {
-        $error = "Veuillez remplir tous les champs.";
-    }
-}
+    } 
+
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -60,30 +43,44 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <head>
     <meta charset="UTF-8">
     <title>Connexion - Bibliothèque</title>
-    <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="stylesheet" href="/bibliotheque/assets/css/style.css">
 </head>
 
 <body>
-    <div class="login-container">
+    <div class="login-container"
+        style="max-width:400px; margin:50px auto; padding:20px; background:#fff; border-radius:5px;">
         <h2>Connexion à la bibliothèque</h2>
         <?php if ($error): ?>
         <p style="color:red;"><?= htmlspecialchars($error) ?></p>
         <?php endif; ?>
         <form method="post">
-            <div>
-                <label for="identifiant">Email (membre) ou nom d'utilisateur (admin) :</label>
-                <input type="text" name="identifiant" id="identifiant" required>
+            <div style="margin-bottom:15px;">
+                <label for="username">Nom d'utilisateur :</label>
+                <input type="text" name="username" id="username" required
+                    style="width:100%; padding:8px; box-sizing:border-box;">
             </div>
-            <div>
+            <div style="margin-bottom:15px;">
                 <label for="password">Mot de passe :</label>
-                <input type="password" name="password" id="password" required>
+                <input type="password" name="password" id="password" required
+                    style="width:100%; padding:8px; box-sizing:border-box;">
+                <input type="checkbox" id="showPassword" style="margin-left: 8px; width: auto;">
+                <label for="showPassword" style="margin-left: 4px; white-space: nowrap;">Afficher</label>
             </div>
-            <button type="submit" class="btn">Se connecter</button>
+            <button type="submit" class="btn"
+                style="background:#333; color:#fff; border:none; padding:10px 20px; cursor:pointer;">Se
+                connecter</button>
         </form>
-        <p>
-            <a href="/inscription.php">Pas encore membre ? Inscrivez-vous</a>
-        </p>
     </div>
+    <script>
+    document.getElementById('showPassword').addEventListener('change', function() {
+        var passwordField = document.getElementById('password');
+        if (this.checked) {
+            passwordField.type = 'text';
+        } else {
+            passwordField.type = 'password';
+        }
+    });
+    </script>
 </body>
 
 </html>
