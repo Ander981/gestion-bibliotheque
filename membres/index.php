@@ -1,7 +1,7 @@
 <?php
-require_once __DIR__ . '/config/database.php';
-require_once __DIR__ . '/includes/auth_check.php';
-require_once __DIR__ . '/includes/header.php';
+require_once __DIR__ . '/../config/database.php';
+require_once __DIR__ . '/../includes/auth_check.php';
+require_once __DIR__ . '/../includes/header.php';
 
 // Récupérer tous les membres
 $stmt = $pdo->query("SELECT * FROM membres ORDER BY nom, prenom");

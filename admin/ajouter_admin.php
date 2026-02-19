@@ -1,7 +1,8 @@
 <?php
 // admin/ajouter_admin.php
-require_once '../config/database.php';
-require_once '../includes/auth_check.php';
+require_once __DIR__ . '/../config/database.php';
+require_once __DIR__ . '/../includes/auth_check.php';
+require_once __DIR__ . '/../includes/header.php';
 
 // Vérifier que l'utilisateur connecté est super_admin
 if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'super_admin') {

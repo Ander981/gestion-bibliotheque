@@ -1,6 +1,7 @@
 <?php
-require_once '../config/database.php';
-require_once '../includes/header.php';
+require_once __DIR__ . '/../config/database.php';
+require_once __DIR__ . '/../includes/auth_check.php';
+require_once __DIR__ . '/../includes/header.php';
 
 // Récupérer les livres disponibles
 $stmtLivres = $pdo->query("SELECT id, titre FROM livres WHERE disponible = 1 ORDER BY titre");

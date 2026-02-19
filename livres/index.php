@@ -1,7 +1,7 @@
 <?php
-require_once __DIR__ . '/config/database.php';
-require_once __DIR__ . '/includes/auth_check.php';
-require_once __DIR__ . '/includes/header.php';
+require_once __DIR__ . '/../config/database.php';
+require_once __DIR__ . '/../includes/auth_check.php';
+require_once __DIR__ . '/../includes/header.php';
 
 // Gestion de la recherche
 $search = isset($_GET['search']) ? trim($_GET['search']) : '';

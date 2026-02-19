@@ -1,7 +1,7 @@
 <?php
-require_once '../config/database.php';
-require_once '../includes/auth_check.php';
-require_once '../includes/header.php';
+require_once __DIR__ . '/../config/database.php';
+require_once __DIR__ . '/../includes/auth_check.php';
+require_once __DIR__ . '/../includes/header.php';
 
 $stmt = $pdo->query("
     SELECT e.*, l.titre AS livre_titre, m.nom AS membre_nom, m.prenom AS membre_prenom
