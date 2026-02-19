@@ -4,7 +4,7 @@ session_start();
 
 // Si l'utilisateur est déjà connecté, on le redirige vers l'accueil
 if (isset($_SESSION['user_id'])) {
-    header('Location: /bibliotheque/index.php');
+    header('Location: /index.php'); 
     exit;
 }
 
