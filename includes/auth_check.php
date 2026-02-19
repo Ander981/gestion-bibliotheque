@@ -1,0 +1,12 @@
+<?php
+
+// includes/auth_check.php
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
+if (!isset($_SESSION['user_id'])) {
+    header('Location: /bibliotheque/auth/login.php');
+    exit;
+}
+?>

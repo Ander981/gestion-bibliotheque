@@ -1,0 +1,264 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  padding-top: 50px;
+  overflow: hidden;
+  background-color: #f4f4f4;
+  background:
+    linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+    url("../images/background1.jpeg");
+}
+
+header {
+  background-color: #333;
+  color: #fff;
+  padding: 1rem 0;
+  text-align: center;
+  margin-top: -45px;
+}
+nav ul {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin: 0;
+  border: none;
+}
+nav ul li a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: bold;
+}
+nav ul li a:hover {
+  text-decoration: underline;
+}
+main {
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background-color: rgba(255, 255, 255, 0.9); /* fond blanc semi-transparent */
+  border-radius: 10px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+  min-height: calc(50vh - 4rem);
+}
+.table-scroll {
+  max-height: 300px; /* hauteur visible */
+  height: calc(100% - 80px); /* laisse place au titre + bouton */
+  overflow-y: auto; /* scroll ici */
+  margin-top: 10px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+table th,
+table td {
+  position: sticky;
+  top: 0px;
+  z-index: 5;
+  padding: 0.75rem;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+table th {
+  background-color: #333;
+  color: #fff;
+}
+.btn {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  background-color: #333;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 4px;
+  margin: 0.25rem 0;
+}
+.btn:hover {
+  background-color: #555;
+}
+
+.retard {
+  background-color: #ffcccc;
+}
+.bientot {
+  background-color: #fff3cd;
+}
+.en-cours {
+  background-color: #d4edda;
+}
+
+/* Barre utilisateur */
+.top-user-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 10px 20px;
+
+  background-color: #333; /* ta couleur d'origine */
+  color: white;
+
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 15px;
+
+  box-shadow: none; /* enlève le trait */
+  border: none; /* sécurité */
+  z-index: 9999;
+}
+
+/* Texte Bonjour */
+.user-greeting {
+  font-weight: 500;
+}
+
+/* Bouton Déconnexion */
+.logout-btn {
+  text-decoration: none;
+  color: white;
+  background-color: #e74c3c;
+  padding: 8px 25px;
+  border-radius: 8px;
+  margin-right: 40px;
+  transition: background-color 0.3s ease;
+}
+
+/* Hover */
+.logout-btn:hover {
+  background-color: #c0392b;
+}
+
+/* ===== STYLES POUR LES FORMULAIRES ===== */
+form {
+  max-width: 600px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+}
+
+form div {
+  margin-bottom: 1.5rem;
+}
+
+form label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  color: #333;
+  font-size: 0.95rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+form input[type="text"],
+form input[type="number"],
+form input[type="email"],
+form input[type="password"],
+form input[type="date"],
+form select,
+form textarea {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 1rem;
+  transition:
+    border-color 0.3s,
+    box-shadow 0.3s;
+  box-sizing: border-box;
+}
+
+form input:focus,
+form select:focus,
+form textarea:focus {
+  outline: none;
+  border-color: #333;
+  box-shadow: 0 0 0 3px rgba(51, 51, 51, 0.1);
+}
+
+form .btn {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  transition:
+    background 0.3s,
+    transform 0.2s;
+  margin-right: 0.5rem;
+}
+
+form .btn[type="submit"] {
+  background: #333;
+  color: #fff;
+}
+
+form .btn[type="submit"]:hover {
+  background: #555;
+  transform: translateY(-2px);
+}
+
+form .btn:not([type="submit"]) {
+  background: #f4f4f4;
+  color: #333;
+}
+
+form .btn:not([type="submit"]):hover {
+  background: #e0e0e0;
+  transform: translateY(-2px);
+}
+
+/* Messages d'erreur et de succès */
+.error-message {
+  color: #d32f2f;
+  background: #ffebee;
+  padding: 0.75rem;
+  border-radius: 5px;
+  margin-bottom: 1.5rem;
+  border-left: 4px solid #d32f2f;
+}
+
+.success-message {
+  color: #388e3c;
+  background: #e8f5e9;
+  padding: 0.75rem;
+  border-radius: 5px;
+  margin-bottom: 1.5rem;
+  border-left: 4px solid #388e3c;
+}
+
+/* Pour les pages avec formulaire, on peut centrer le titre */
+h2 {
+  text-align: center;
+  color: #333;
+  margin-bottom: 2rem;
+}
+
+p {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+footer {
+  text-align: center;
+  padding: 1rem 0;
+  background-color: #333;
+  color: #fff;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
