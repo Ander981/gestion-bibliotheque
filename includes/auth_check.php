@@ -19,7 +19,7 @@ $public_routes = array(
 // Check if current page is a public route
 $is_public_route = false;
 foreach ($public_routes as $route) {
-    if (strpos($current_script, $route) !== false) {
+    if (strpos($request_uri, $route) !== false) {
         $is_public_route = true;
         break;
     }
