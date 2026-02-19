@@ -1,16 +1,36 @@
 <?php
 // config/database.php
 
-// Détection de l'environnement
-if (isset($_ENV['VERCEL'])) {
-    // Nous sommes sur Vercel, on utilise les variables d'env.
-  $host = isset($_ENV['DB_HOST']) ? $_ENV['DB_HOST'] : getenv('DB_HOST');
-   $dbname = isset($_ENV['DB_NAME']) ? $_ENV['DB_NAME'] : getenv('DB_NAME');
-$user   = isset($_ENV['DB_USER']) ? $_ENV['DB_USER'] : getenv('DB_USER');
-$pass   = isset($_ENV['DB_PASSWORD']) ? $_ENV['DB_PASSWORD'] : getenv('DB_PASSWORD');
+// Détection de l'environnement Vercel
+if (isset($_ENV['VERCEL']) || getenv('VERCEL')) {
+    // Récupération des variables d'environnement (plusieurs méthodes pour la compatibilité)
+   $host = getenv('DB_HOST');
+if ($host === false) {
+    $host = isset($_ENV['DB_HOST']) ? $_ENV['DB_HOST'] : null;
+}
 
+$dbname = getenv('DB_NAME');
+if ($dbname === false) {
+    $dbname = isset($_ENV['DB_NAME']) ? $_ENV['DB_NAME'] : null;
+}
+
+$username = getenv('DB_USER');
+if ($username === false) {
+    $username = isset($_ENV['DB_USER']) ? $_ENV['DB_USER'] : null;
+}
+
+$password = getenv('DB_PASSWORD');
+if ($password === false) {
+    $password = isset($_ENV['DB_PASSWORD']) ? $_ENV['DB_PASSWORD'] : null;
+}
+
+
+    // Vérification que les variables existent
+    if (!$host || !$dbname || !$username || !$password) {
+        die("Erreur : Variables d'environnement de base de données manquantes.");
+    }
 } else {
-    // Nous sommes en local (WAMP/XAMPP)
+    // Environnement local (WAMP)
     $host = 'localhost';
     $dbname = 'bibliotheque';
     $username = 'root';
