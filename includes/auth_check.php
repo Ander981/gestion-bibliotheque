@@ -1,43 +1,41 @@
 <?php
-
 // includes/auth_check.php
+
+// Démarrer la session si pas déjà fait
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
-// Get the current request URI (the actual URL being accessed)
-$request_uri = isset($_SERVER['REQUEST_URI']) ? $_SERVER['REQUEST_URI'] : '';
+// Nettoyer le buffer de sortie pour éviter les erreurs de headers
+if (ob_get_level()) {
+    ob_clean();
+}
 
-// Define public routes that don't require authentication
-$public_routes = array(
+// Définir les pages publiques (sans authentification)
+$public_routes = [
     '/auth/login.php',
-    '/auth/logout.php',
-    '/bibliotheque/auth/login.php',
-    '/bibliotheque/auth/logout.php',
-);
+    '/auth/logout.php'
+];
 
-// Check if current page is a public route
-$is_public_route = false;
+// Récupérer l'URI actuelle
+$current_uri = isset($_SERVER['REQUEST_URI']) ? $_SERVER['REQUEST_URI'] : '';
+
+
+// Vérifier si la page actuelle est publique
+$is_public = false;
 foreach ($public_routes as $route) {
-    if (strpos($request_uri, $route) !== false) {
-        $is_public_route = true;
+    if (strpos($current_uri, $route) !== false) {
+        $is_public = true;
         break;
     }
 }
 
-// Only redirect if not on a public route and user is not logged in
-if (!$is_public_route && !isset($_SESSION['user_id'])) {
-    // Check if we're in a subdirectory
-    $redirect_path = '/bibliotheque/auth/login.php';
-    
-    // If the current script already has /bibliotheque prefix, use that
-    if (strpos($current_script, '/bibliotheque') !== false) {
-        $redirect_path = '/bibliotheque/auth/login.php';
-    } else {
-        $redirect_path = '/auth/login.php';
-    }
-    
-    header('Location: ' . $redirect_path); 
+// Si la page n'est pas publique et que l'utilisateur n'est pas connecté
+if (!$is_public && !isset($_SESSION['user_id']) && !isset($_SESSION['membre_id'])) {
+    // Rediriger vers la page de connexion
+    header('Location: /auth/login.php');
     exit;
 }
+
+// L'utilisateur est autorisé à continuer
 ?>
