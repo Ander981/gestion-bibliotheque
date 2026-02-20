@@ -46,17 +46,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </div>
     <button type="submit" class="btn">Ajouter</button>
     <a href="index.php" class="btn">Annuler</a>
-    <?php if (isset($_SESSION['username'])): ?>
-    <div class="top-user-bar">
-        <span class="user-greeting">
-            Bonjour, <?= htmlspecialchars($_SESSION['username']) ?>
-        </span>
-
-        <a class="logout-btn" href="/bibliotheque/auth/logout.php">
-            Déconnexion
-        </a>
-    </div>
-    <?php endif; ?>
 </form>
 
 <?php require_once '../includes/footer.php'; ?>

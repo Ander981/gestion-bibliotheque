@@ -6,7 +6,7 @@ require_once __DIR__ . '/../includes/header.php';
 
 // Vérifier que l'utilisateur connecté est super_admin
 if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'super_admin') {
-    header('Location: /bibliotheque/index.php');
+    header('Location: ../index.php');
     exit;
 }
 
@@ -63,7 +63,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <input type="password" name="password" id="password" required>
     </div>
     <button type="submit" class="btn">Créer l'administrateur</button>
-    <a href="/bibliotheque/index.php" class="btn">Annuler</a>
+    <a href="<?= $base_path ?>/index.php" class="btn">Annuler</a>
 </form>
 
 <?php require_once '../includes/footer.php'; ?>

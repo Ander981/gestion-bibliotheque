@@ -1,6 +1,9 @@
 <?php
 // includes/auth_check.php
 
+// Inclure la configuration pour avoir $base_path
+require_once __DIR__ . '/../config/config.php';
+
 // Démarrer la session si pas déjà fait
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
@@ -33,7 +36,7 @@ foreach ($public_routes as $route) {
 // Si la page n'est pas publique et que l'utilisateur n'est pas connecté
 if (!$is_public && !isset($_SESSION['user_id']) && !isset($_SESSION['membre_id'])) {
     // Rediriger vers la page de connexion
-    header('Location: /auth/login.php');
+    header('Location: ' . $base_path . '/auth/login.php');
     exit;
 }
 

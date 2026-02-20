@@ -2,9 +2,6 @@
 // includes/header.php
 require_once __DIR__ . '/../config/config.php';
 ?>
-
-
-?>
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -12,7 +9,7 @@ require_once __DIR__ . '/../config/config.php';
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gestion de bibliothèque</title>
-    <link rel="stylesheet" href="/bibliotheque/assets/css/style.css">
+    <link rel="stylesheet" href="<?= $base_path ?>/assets/css/style.css">
 </head>
 
 <body>
@@ -22,7 +19,7 @@ require_once __DIR__ . '/../config/config.php';
             Bonjour, <?= htmlspecialchars($_SESSION['username']) ?>
         </span>
 
-        <a class="logout-btn" href="/bibliotheque/auth/logout.php">
+        <a class="logout-btn" href="<?= $base_path ?>/auth/logout.php">
             Déconnexion
         </a>
     </div>
@@ -31,12 +28,12 @@ require_once __DIR__ . '/../config/config.php';
         <h1>📚 Gestion de bibliothèque</h1>
         <nav>
             <ul>
-                <li><a href="/bibliotheque/index.php">Accueil</a></li>
-                <li><a href="/bibliotheque/livres/index.php">Livres</a></li>
-                <li><a href="/bibliotheque/membres/index.php">Membres</a></li>
-                <li><a href="/bibliotheque/emprunts/index.php">Emprunts</a></li>
+                <li><a href="<?= $base_path ?>/index.php">Accueil</a></li>
+                <li><a href="<?= $base_path ?>/livres/index.php">Livres</a></li>
+                <li><a href="<?= $base_path ?>/membres/index.php">Membres</a></li>
+                <li><a href="<?= $base_path ?>/emprunts/index.php">Emprunts</a></li>
                 <?php if (isset($_SESSION['role']) && $_SESSION['role'] === 'super_admin'): ?>
-                <li><a href="/bibliotheque/admin/ajouter_admin.php">Ajouter un admin</a></li>
+                <li><a href="<?= $base_path ?>/admin/ajouter_admin.php">Ajouter un admin</a></li>
                 <?php endif; ?>
             </ul>
         </nav>

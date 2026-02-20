@@ -9,7 +9,7 @@ if (isset($_GET['confirm']) && $_GET['confirm'] === 'yes') {
     // Stocker un message de confirmation dans la session (pour l'afficher sur login.php)
     session_start(); // On redémarre une session pour stocker le message
     $_SESSION['logout_message'] = "Vous avez été déconnecté avec succès.";
-    header('Location: /bibliotheque/auth/login.php');
+    header('Location: login.php');
     exit;
 }
 
@@ -21,7 +21,7 @@ if (isset($_GET['confirm']) && $_GET['confirm'] === 'yes') {
 <head>
     <meta charset="UTF-8">
     <title>Déconnexion</title>
-    <link rel="stylesheet" href="/bibliotheque/assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/style.css">
 </head>
 
 <body>
