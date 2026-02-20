@@ -1,67 +1,50 @@
 <?php
-// livres/ajouter.php
+// includes/header.php
 
-// Démarrer la session si pas déjà fait
+// S'assurer que la session est démarrée
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
-require_once __DIR__ . '/../config/database.php';
-require_once __DIR__ . '/../includes/auth_check.php';
-
-// Initialiser les variables
-$error = '';
-$success = false;
-
-// TRAITEMENT DU FORMULAIRE - AVANT tout HTML
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $titre = isset($_POST['titre']) ? trim($_POST['titre']) : '';
-    $auteur = isset($_POST['auteur']) ? trim($_POST['auteur']) : '';
-    $annee = isset($_POST['annee']) ? $_POST['annee'] : '';
-    $isbn = isset($_POST['isbn']) ? trim($_POST['isbn']) : '';
-
-    if (!empty($titre) && !empty($auteur)) {
-        $sql = "INSERT INTO livres (titre, auteur, annee, isbn) VALUES (?, ?, ?, ?)";
-        $stmt = $pdo->prepare($sql);
-        $stmt->execute([$titre, $auteur, $annee ?: null, $isbn ?: null]);
-        
-        // REDIRECTION - ICI c'est encore sûr car pas de HTML envoyé
-        header('Location: index.php');
-        exit; // TRÈS IMPORTANT : arrêter l'exécution après redirection
-    } else {
-        $error = "Veuillez remplir les champs obligatoires.";
-    }
+// Définir le chemin de base en fonction de l'environnement
+$base_path = '';
+if (isset($_SERVER['HTTP_HOST']) && strpos($_SERVER['HTTP_HOST'], 'localhost') !== false) {
+    $base_path = '/bibliotheque';
 }
-
-// MAINTENANT on peut inclure header.php (qui commence à envoyer du HTML)
-require_once __DIR__ . '/../includes/header.php';
 ?>
+<!DOCTYPE html>
+<html lang="fr">
 
-<h2>Ajouter un livre</h2>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestion de bibliothèque</title>
+    <link rel="stylesheet" href="<?= $base_path ?>/assets/css/style.css">
+</head>
 
-<?php if ($error): ?>
-<p style="color:red;"><?= htmlspecialchars($error) ?></p>
-<?php endif; ?>
-
-<form method="post">
-    <div>
-        <label for="titre">Titre :</label>
-        <input type="text" name="titre" id="titre" required>
+<body>
+    <?php if (isset($_SESSION['username'])): ?>
+    <div class="top-user-bar">
+        <span class="user-greeting">
+            Bonjour, <?= htmlspecialchars($_SESSION['username']) ?>
+        </span>
+        <a class="logout-btn" href="<?= $base_path ?>/auth/logout.php">
+            Déconnexion
+        </a>
     </div>
-    <div>
-        <label for="auteur">Auteur :</label>
-        <input type="text" name="auteur" id="auteur" required>
-    </div>
-    <div>
-        <label for="annee">Année :</label>
-        <input type="number" name="annee" id="annee">
-    </div>
-    <div>
-        <label for="isbn">ISBN :</label>
-        <input type="text" name="isbn" id="isbn">
-    </div>
-    <button type="submit" class="btn">Ajouter</button>
-    <a href="index.php" class="btn">Annuler</a>
-</form>
-
-<?php require_once __DIR__ . '/../includes/footer.php'; ?>
+    <?php endif; ?>
+    <header>
+        <h1>📚 Gestion de bibliothèque</h1>
+        <nav>
+            <ul>
+                <li><a href="<?= $base_path ?>/index.php">Accueil</a></li>
+                <li><a href="<?= $base_path ?>/livres/index.php">Livres</a></li>
+                <li><a href="<?= $base_path ?>/membres/index.php">Membres</a></li>
+                <li><a href="<?= $base_path ?>/emprunts/index.php">Emprunts</a></li>
+                <?php if (isset($_SESSION['role']) && $_SESSION['role'] === 'super_admin'): ?>
+                <li><a href="<?= $base_path ?>/admin/ajouter_admin.php">Ajouter un admin</a></li>
+                <?php endif; ?>
+            </ul>
+        </nav>
+    </header>
+    <main>
