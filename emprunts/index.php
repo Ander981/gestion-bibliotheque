@@ -30,12 +30,12 @@ $emprunts_en_cours = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
 <h2>Emprunts en cours</h2>
-<div class="table-scroll">
-    <a href="ajouter.php" class="btn">Nouvel emprunt</a>
+<a href="ajouter.php" class="btn">Nouvel emprunt</a>
 
-    <?php if (empty($emprunts_en_cours)): ?>
-    <p>Aucun emprunt en cours.</p>
-    <?php else: ?>
+<?php if (empty($emprunts_en_cours)): ?>
+<p>Aucun emprunt en cours.</p>
+<?php else: ?>
+<div class="table-scroll">
     <table>
         <thead>
             <tr>
@@ -60,11 +60,12 @@ $emprunts_en_cours = $stmt->fetchAll(PDO::FETCH_ASSOC);
             <?php endforeach; ?>
         </tbody>
     </table>
-    <?php endif; ?>
+</div>
+<?php endif; ?>
 
-    <hr>
+<hr>
 
-    <h3>Historique complet</h3>
-    <p><a href="historique.php" class="btn">Voir tous les emprunts passés</a></p>
+<h3>Historique complet</h3>
+<p><a href="historique.php" class="btn">Voir tous les emprunts passés</a></p>
 
-    <?php require_once __DIR__ . '/../includes/footer.php'; ?>
+<?php require_once __DIR__ . '/../includes/footer.php'; ?>
