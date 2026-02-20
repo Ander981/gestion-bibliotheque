@@ -67,4 +67,4 @@ $emprunts_en_cours = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <h3>Historique complet</h3>
     <p><a href="historique.php" class="btn">Voir tous les emprunts passés</a></p>
 
-    <?php require_once '../includes/footer.php'; ?>
+    <?php require_once __DIR__ . '/../includes/footer.php'; ?>

@@ -39,4 +39,4 @@ $membres = $stmt->fetchAll(PDO::FETCH_ASSOC);
     </table>
 </div>
 
-<?php require_once '../includes/footer.php'; ?>
+<?php require_once __DIR__ . '/../includes/footer.php'; ?>
