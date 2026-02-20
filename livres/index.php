@@ -5,14 +5,21 @@ require_once __DIR__ . '/../includes/header.php';
 
 // Gestion de la recherche
 $search = isset($_GET['search']) ? trim($_GET['search']) : '';
+
 if ($search !== '') {
-    $stmt = $pdo->prepare("SELECT * FROM livres WHERE titre LIKE :search OR auteur LIKE :search ORDER BY titre");
-    $stmt->execute(['search' => "%$search%"]);
+    // Solution 1 : Utiliser deux paramètres distincts
+    $stmt = $pdo->prepare("SELECT * FROM livres WHERE titre LIKE :titre OR auteur LIKE :auteur ORDER BY titre");
+    $stmt->execute([
+        'titre' => "%$search%",
+        'auteur' => "%$search%"
+    ]);
 } else {
     $stmt = $pdo->query("SELECT * FROM livres ORDER BY titre");
 }
+
 $livres = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
+
 
 <h2>Liste des livres</h2>
 <a href="ajouter.php" class="btn">Ajouter un livre</a>

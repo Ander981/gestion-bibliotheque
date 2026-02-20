@@ -55,4 +55,4 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <a href="index.php" class="btn">Annuler</a>
 </form>
 
-<?php require_once '../includes/footer.php'; ?>
+<?php require_once __DIR__ . '/../includes/footer.php'; ?>
