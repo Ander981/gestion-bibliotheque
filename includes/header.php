@@ -1,6 +1,16 @@
 <?php
 // includes/header.php
-require_once __DIR__ . '/../config/config.php';
+
+// S'assurer que la session est démarrée
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
+// Définir le chemin de base en fonction de l'environnement
+$base_path = '';
+if (isset($_SERVER['HTTP_HOST']) && strpos($_SERVER['HTTP_HOST'], 'localhost') !== false) {
+    $base_path = '/bibliotheque';
+}
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -18,7 +28,6 @@ require_once __DIR__ . '/../config/config.php';
         <span class="user-greeting">
             Bonjour, <?= htmlspecialchars($_SESSION['username']) ?>
         </span>
-
         <a class="logout-btn" href="<?= $base_path ?>/auth/logout.php">
             Déconnexion
         </a>
