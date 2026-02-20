@@ -1,6 +1,4 @@
 <?php
-// auth/logout.php
-session_start();
 
 // Si on a déjà confirmé (via paramètre GET), on déconnecte
 if (isset($_GET['confirm']) && $_GET['confirm'] === 'yes') {
