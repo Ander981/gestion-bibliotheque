@@ -84,7 +84,7 @@ switch (true) {
         
     default:
         // Page d'accueil
-        // require_once __DIR__ . '/../index.php';
+        require_once __DIR__ . '/../index.php';
         break;
 }
 ?>

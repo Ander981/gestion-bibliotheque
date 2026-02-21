@@ -21,6 +21,10 @@
       "src": "/livres/?(.*)",
       "dest": "/api/index.php"
     },
+        {
+      "src": "/bibliotheque/livres/?(.*)",
+      "dest": "/api/index.php"
+    },
     {
       "src": "/membres/?(.*)",
       "dest": "/api/index.php"
