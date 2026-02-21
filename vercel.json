@@ -22,7 +22,7 @@
       "dest": "/api/index.php"
     },
         {
-      "src": "/bibliotheque/livres/?(.*)",
+      "src": "/bibliotheque/livres/ajout_livre.php",
       "dest": "/api/index.php"
     },
     {
