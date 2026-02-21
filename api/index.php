@@ -23,6 +23,9 @@ switch (true) {
             require_once __DIR__ . '/../livres/index.php';
         } elseif ($path === '/livres/ajouter.php') {
             require_once __DIR__ . '/../livres/ajouter.php';
+             } 
+        elseif ($path === '/bibliotheque/livres/ajout_livre.php') {
+            require_once __DIR__ . '/bibliotheque/livres/ajout_livre.php';
         } elseif ($path === '/livres/modifier.php') {
             require_once __DIR__ . '/../livres/modifier.php';
         } elseif ($path === '/livres/supprimer.php') {

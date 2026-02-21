@@ -1,6 +1,6 @@
 <?php
 require_once __DIR__ . '/../config/database.php';
-// require_once __DIR__ . '/../includes/auth_check.php';
+require_once __DIR__ . '/../includes/auth_check.php';
 
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -12,6 +12,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $sql = "INSERT INTO livres (titre, auteur, annee, isbn) VALUES (?, ?, ?, ?)";
     $stmt = $pdo->prepare($sql);
     $stmt->execute([$titre, $auteur, $annee, $isbn]);
+    header('Location: index.php');
     exit;
 }
 ?>
