@@ -10,8 +10,8 @@ $membres = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 <h2>Liste des membres</h2>
 <a href="ajouter.php" class="btn">Ajouter un membre</a>
-<div class="table-scroll">
-    <table>
+<table>
+    <div class="table-scroll">
         <thead>
             <tr>
                 <th>Nom</th>
@@ -36,7 +36,8 @@ $membres = $stmt->fetchAll(PDO::FETCH_ASSOC);
             </tr>
             <?php endforeach; ?>
         </tbody>
-    </table>
-</div>
+    </div>
+</table>
+
 
 <?php require_once __DIR__ . '/../includes/footer.php'; ?>

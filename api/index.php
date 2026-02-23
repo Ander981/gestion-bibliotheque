@@ -41,7 +41,11 @@ switch (true) {
             require_once __DIR__ . '/../membres/index.php';
         } elseif ($path === '/membres/ajouter.php') {
             require_once __DIR__ . '/../membres/ajouter.php';
-        } elseif ($path === '/membres/modifier.php') {
+        } 
+         elseif ($path === '/bibliotheque/membres/ajout_membre.php') {
+            require_once __DIR__ . '/bibliotheque/membres/ajout_membre.php';
+        }
+        elseif ($path === '/membres/modifier.php') {
             require_once __DIR__ . '/../membres/modifier.php';
         } elseif ($path === '/membres/supprimer.php') {
             require_once __DIR__ . '/../membres/supprimer.php';

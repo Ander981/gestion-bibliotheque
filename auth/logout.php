@@ -1,17 +1,40 @@
 <?php
 
-// Si on a déjà confirmé (via paramètre GET), on déconnecte
+session_start();
+
+
 if (isset($_GET['confirm']) && $_GET['confirm'] === 'yes') {
-    // Détruire la session
+    
+    
+    $_SESSION = [];
+    
+   
+    if (ini_get("session.use_cookies")) {
+        $params = session_get_cookie_params();
+        setcookie(
+            session_name(),                 
+            '',                             
+            time() - 42000,                  
+            $params["path"],
+            $params["domain"],
+            $params["secure"],
+            $params["httponly"]
+        );
+    }
+    
+    
     session_destroy();
-    // Stocker un message de confirmation dans la session (pour l'afficher sur login.php)
-    session_start(); // On redémarre une session pour stocker le message
+    
+    
+    session_start();
     $_SESSION['logout_message'] = "Vous avez été déconnecté avec succès.";
+    
+   
     header('Location: login.php');
     exit;
 }
 
-// Sinon, on affiche une page de confirmation
+
 ?>
 <!DOCTYPE html>
 <html lang="fr">
