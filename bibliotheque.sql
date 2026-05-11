@@ -61,7 +61,7 @@ CREATE TABLE IF NOT EXISTS `livres` (
   `titre` varchar(255) NOT NULL,
   `auteur` varchar(255) NOT NULL,
   `annee` int DEFAULT NULL,
-  `isbn` varchar(20) DEFAULT NULL,
+  `isbn` varchar(20) NOT NULL UNIQUE,
   `disponible` tinyint(1) DEFAULT '1',
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=geostd8;

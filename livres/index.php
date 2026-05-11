@@ -46,6 +46,7 @@ $livres = $stmt->fetchAll(PDO::FETCH_ASSOC);
             </tr>
         </thead>
         <tbody>
+            <?php if (count($livres) > 0): ?>
             <?php foreach ($livres as $livre): ?>
             <tr>
                 <td><?= htmlspecialchars($livre['titre']) ?></td>
@@ -60,6 +61,17 @@ $livres = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 </td>
             </tr>
             <?php endforeach; ?>
+            <?php else: ?>
+            <tr>
+                <td colspan="6" style="text-align:center; padding: 1rem;">
+                    <?php if ($search !== ''): ?>
+                    Aucun livre trouvé pour "<?= htmlspecialchars($search) ?>" 📚
+                    <?php else: ?>
+                    Aucun livre disponible.
+                    <?php endif; ?>
+                </td>
+            </tr>
+            <?php endif; ?>
         </tbody>
     </table>
 </div>
