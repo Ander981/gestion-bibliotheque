@@ -100,10 +100,7 @@ try {
 // FONCTIONS UTILES (optionnel)
 // ============================================
 
-/**
- * Exemple : fonction pour exécuter une requête préparée en toute sécurité
- * (à déplacer dans un fichier séparé si nécessaire)
- */
+
 function executeQuery($pdo, $sql, $params = []) {
     try {
         $stmt = $pdo->prepare($sql);

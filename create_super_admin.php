@@ -26,13 +26,12 @@ try {
             echo "Colonne 'role' étendue pour inclure '$role'.<br>";
         }
     } elseif ($column && strpos($column['Type'], 'varchar') !== false) {
-        // Si c'est un varchar, pas de souci
-        // On peut laisser tel quel
+       
     } else {
-        // Si ce n'est pas un ENUM, on peut aussi laisser
+     
     }
 } catch (Exception $e) {
-    // En cas d'erreur (table peut-être différente), on continue
+  
 }
 
 // 2. Créer ou mettre à jour l'utilisateur

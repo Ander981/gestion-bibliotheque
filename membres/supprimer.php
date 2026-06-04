@@ -14,7 +14,7 @@ $id = $_GET['id'];
 $stmt = $pdo->prepare("SELECT id FROM emprunts WHERE membre_id = ? AND date_retour_effective IS NULL");
 $stmt->execute([$id]);
 if ($stmt->fetch()) {
-    // Rediriger avec un message d'erreur (on peut utiliser une session pour message)
+    // Message d'erreur 
     header('Location: index.php?error=Ce membre a des emprunts en cours, suppression impossible');
     exit;
 }
